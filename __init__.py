@@ -1,0 +1,40 @@
+from .drop_shadow_node import (
+    NODE_CLASS_MAPPINGS as DROP_SHADOW_MAPPINGS,
+    NODE_DISPLAY_NAME_MAPPINGS as DROP_SHADOW_NAMES,
+)
+from .gradient_fill_node import (
+    NODE_CLASS_MAPPINGS as GRADIENT_FILL_MAPPINGS,
+    NODE_DISPLAY_NAME_MAPPINGS as GRADIENT_FILL_NAMES,
+)
+from .interactive_crop_node import (
+    NODE_CLASS_MAPPINGS as INTERACTIVE_CROP_MAPPINGS,
+    NODE_DISPLAY_NAME_MAPPINGS as INTERACTIVE_CROP_NAMES,
+)
+from .layer_manager_node import (
+    NODE_CLASS_MAPPINGS as LAYER_MANAGER_MAPPINGS,
+    NODE_DISPLAY_NAME_MAPPINGS as LAYER_MANAGER_NAMES,
+)
+
+NODE_CLASS_MAPPINGS = {
+    **DROP_SHADOW_MAPPINGS,
+    **GRADIENT_FILL_MAPPINGS,
+    **INTERACTIVE_CROP_MAPPINGS,
+    **LAYER_MANAGER_MAPPINGS,
+}
+
+NODE_DISPLAY_NAME_MAPPINGS = {
+    **DROP_SHADOW_NAMES,
+    **GRADIENT_FILL_NAMES,
+    **INTERACTIVE_CROP_NAMES,
+    **LAYER_MANAGER_NAMES,
+}
+
+WEB_DIRECTORY = "./web"
+
+__all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS", "WEB_DIRECTORY"]
+
+print(
+    "\033[34m[Orion4D]\033[0m Loaded: "
+    "Drop Shadow App, Fill / Gradient Generator App, "
+    "Interactive Crop App, Paste Cropped Image, Layer Manager App"
+)

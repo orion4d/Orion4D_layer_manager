@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Orion4D Layer Manager</title>
+    <link rel="stylesheet" href="./layer_manager_app.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand-block">
+            <div class="eyebrow">ORION4D LAYER TOOLS</div>
+            <h1>Layer Manager</h1>
+        </div>
+
+        <div class="main-tools" aria-label="Layer Manager tools">
+            <button id="undoAction" class="tool-button" title="Undo · Ctrl+Z">↶ <span>Undo</span></button>
+            <button id="redoAction" class="tool-button" title="Redo · Ctrl+Shift+Z">↷ <span>Redo</span></button>
+            <button id="handTool" class="tool-button icon-only" title="Hand tool · Hold Space" aria-pressed="false">✋</button>
+            <span class="tool-separator"></span>
+            <button id="zoomOut" class="tool-button icon-only" title="Zoom out · Mouse wheel">−</button>
+            <button id="zoomReset" class="zoom-value" title="Reset preview zoom to 100%">100%</button>
+            <button id="zoomIn" class="tool-button icon-only" title="Zoom in · Mouse wheel">+</button>
+        </div>
+
+        <div class="top-actions">
+            <button id="refreshLayers" class="secondary">Refresh layers</button>
+            <button id="applySettings" class="primary">Apply</button>
+            <button id="closeApp" class="secondary">Close</button>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <aside class="layers-panel">
+            <div class="panel-title-row">
+                <h2>Layers</h2>
+                <span id="layerCount">0</span>
+            </div>
+            <div id="layersList" class="layers-list"></div>
+            <div id="layersEmpty" class="empty-panel">
+                Connect an image to <strong>L1_image</strong>.<br>
+                A new IMAGE/MASK pair appears automatically.
+            </div>
+            <div class="layers-help">
+                <p><strong>M</strong> mutes a layer. <strong>S</strong> solos it. Locked layers are ignored by canvas selection.</p>
+                <p>Top items are rendered above lower items.</p>
+                <p>A connected mask is previewed exactly after running ComfyUI.</p>
+            </div>
+        </aside>
+
+        <section class="preview-panel">
+            <div class="preview-toolbar">
+                <span id="status">Connecting to ComfyUI…</span>
+                <span id="canvasInfo">1024 × 1024</span>
+            </div>
+            <div class="preview-stage" id="previewStage">
+                <canvas id="previewCanvas"></canvas>
+                <div id="emptyMessage">Connect one or more images to the Layer Manager node</div>
+            </div>
+            <div class="preview-footer">
+                <span>Drag to move · Corner handles scale · Blue handle rotates · Mouse wheel zooms · Hold Space to pan</span>
+                <span>The final composition is rendered by ComfyUI.</span>
+            </div>
+        </section>
+
+        <aside class="controls-panel">
+            <section class="control-section">
+                <h2>Document</h2>
+                <div class="two-cols">
+                    <label>Width<input id="canvas_width" type="number" min="16" max="8192" step="1"></label>
+                    <label>Height<input id="canvas_height" type="number" min="16" max="8192" step="1"></label>
+                </div>
+                <label>Background
+                    <div class="color-row"><input id="bg_color" type="color"><input id="bg_hex" type="text" maxlength="9"></div>
+                </label>
+                <label class="toggle-row"><input id="flatten_output" type="checkbox"><span>Flatten RGB output on background</span></label>
+                <label class="toggle-row"><input id="invert_input_masks" type="checkbox"><span>Invert all input masks</span></label>
+            </section>
+
+            <section class="control-section" id="layerProperties">
+                <div class="section-head">
+                    <h2>Selected layer</h2>
+                    <span id="selectedIndex">—</span>
+                </div>
+
+                <div class="layer-state-tools">
+                    <button id="toggleLayerLock" class="secondary state-tool" title="Lock or unlock selected layer">🔓 <span>Lock</span></button>
+                    <button id="toggleLayerMute" class="secondary state-tool" title="Mute selected layer"><strong>M</strong> <span>Mute</span></button>
+                    <button id="toggleLayerSolo" class="secondary state-tool" title="Display only selected layer"><strong>S</strong> <span>Solo</span></button>
+                    <button id="resetLayer" class="secondary state-tool reset-tool" title="Center at 100%, zero rotation and Normal blend">Reset layer</button>
+                </div>
+
+                <label>Name<input id="layer_name" type="text"></label>
+                <div class="two-cols">
+                    <label>X<input id="layer_x" type="number" min="-8192" max="8192" step="1"></label>
+                    <label>Y<input id="layer_y" type="number" min="-8192" max="8192" step="1"></label>
+                </div>
+
+                <label>Scale <output id="scaleOutput">100%</output>
+                    <input id="layer_scale" type="range" min="1" max="500" step="0.1">
+                </label>
+                <label class="toggle-row"><input id="constrain_scale" type="checkbox"><span>Constrain scale</span></label>
+                <div class="two-cols">
+                    <label>Scale X<input id="scale_x" type="number" min="1" max="2000" step="0.1"></label>
+                    <label>Scale Y<input id="scale_y" type="number" min="1" max="2000" step="0.1"></label>
+                </div>
+
+                <label>Rotation <output id="rotationOutput">0°</output>
+                    <input id="layer_rotation" type="range" min="-180" max="180" step="0.1">
+                </label>
+                <label>Opacity <output id="opacityOutput">100%</output>
+                    <input id="layer_opacity" type="range" min="0" max="1" step="0.01">
+                </label>
+
+                <div class="two-cols">
+                    <label>Anchor
+                        <select id="layer_anchor">
+                            <option value="top_left">Top Left</option>
+                            <option value="top_right">Top Right</option>
+                            <option value="bottom_left">Bottom Left</option>
+                            <option value="bottom_right">Bottom Right</option>
+                            <option value="center">Center</option>
+                        </select>
+                    </label>
+                    <label>Blend
+                        <select id="layer_blend">
+                            <option value="normal">Normal</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="screen">Screen</option>
+                            <option value="overlay">Overlay</option>
+                            <option value="darken">Darken</option>
+                            <option value="lighten">Lighten</option>
+                            <option value="add">Add</option>
+                            <option value="subtract">Subtract</option>
+                            <option value="difference">Difference</option>
+                            <option value="soft_light">Soft Light</option>
+                            <option value="hard_light">Hard Light</option>
+                        </select>
+                    </label>
+                </div>
+                <label class="toggle-row"><input id="layer_visible" type="checkbox"><span>Visible</span></label>
+            </section>
+
+            <section class="control-section" id="alignmentSection">
+                <h2>Alignment</h2>
+                <div class="alignment-grid">
+                    <button data-align="top_left" title="Top Left">↖</button>
+                    <button data-align="top" title="Top">↑</button>
+                    <button data-align="top_right" title="Top Right">↗</button>
+                    <button data-align="left" title="Left">←</button>
+                    <button data-align="center" title="Center">●</button>
+                    <button data-align="right" title="Right">→</button>
+                    <button data-align="bottom_left" title="Bottom Left">↙</button>
+                    <button data-align="bottom" title="Bottom">↓</button>
+                    <button data-align="bottom_right" title="Bottom Right">↘</button>
+                </div>
+                <div class="button-row">
+                    <button id="fitLayer" class="secondary">Fit to canvas</button>
+                    <button id="centerLayer" class="secondary">Center</button>
+                </div>
+            </section>
+
+            <section class="control-section help-section">
+                <h2>Layer order</h2>
+                <p>Use the ▲ and ▼ buttons in the layer list. The order is stored in the workflow and used by the Python renderer.</p>
+            </section>
+
+            <div class="bottom-actions">
+                <button id="applyClose" class="primary wide">Apply &amp; Close</button>
+            </div>
+        </aside>
+    </main>
+
+    <script type="module" src="./layer_manager_app.js"></script>
+</body>
+</html>

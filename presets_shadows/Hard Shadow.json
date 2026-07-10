@@ -1,0 +1,14 @@
+{
+  "canvas_width": 1024,
+  "canvas_height": 1024,
+  "scale_percent": -15.0,
+  "shadow_mode": "outer",
+  "shadow_spread": 2,
+  "shadow_blur": 5.0,
+  "shadow_offset_x": 20,
+  "shadow_offset_y": 20,
+  "shadow_opacity": 0.72,
+  "shadow_color": "#000000",
+  "background_mode": "transparent",
+  "background_color": "#FFFFFF"
+}

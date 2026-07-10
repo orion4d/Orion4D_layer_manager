@@ -1,0 +1,17 @@
+{
+  "width": 1024,
+  "height": 1024,
+  "fill_mode": "radial",
+  "color_count": "3",
+  "color_1": "#FFF2B2",
+  "color_2": "#FF7A18",
+  "color_3": "#5A1026",
+  "color_4": "#111827",
+  "invert": false,
+  "angle": 0.0,
+  "center_x": 0.5,
+  "center_y": 0.42,
+  "inner_border_px": 0,
+  "border_color": "#FFFFFF",
+  "border_opacity": 1.0
+}

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Orion4D Interactive Crop</title>
+    <link rel="stylesheet" href="./interactive_crop_app.css">
+</head>
+<body>
+    <header class="topbar">
+        <div>
+            <div class="eyebrow">ORION4D LAYER TOOLS</div>
+            <h1>Interactive Crop</h1>
+        </div>
+        <div class="top-actions">
+            <button id="fullImage" class="secondary">Full image</button>
+            <button id="centerCrop" class="secondary">Center crop</button>
+            <button id="refreshImage" class="secondary">Refresh image</button>
+            <button id="resetSettings" class="secondary">Reset</button>
+            <button id="applySettings" class="primary">Apply</button>
+            <button id="closeApp" class="secondary">Close</button>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <section class="preview-panel">
+            <div class="preview-toolbar">
+                <span id="status">Connecting to ComfyUI…</span>
+                <span id="cropInfo">0 × 0</span>
+            </div>
+            <div class="preview-stage" id="previewStage">
+                <canvas id="previewCanvas"></canvas>
+                <div id="emptyMessage">Connect an image to the Interactive Crop node</div>
+            </div>
+            <div class="preview-footer">
+                <span>Drag inside the crop to move · Drag a handle to resize · Drag outside to create a new crop</span>
+                <span>The final crop is calculated by ComfyUI.</span>
+            </div>
+        </section>
+
+        <aside class="controls-panel">
+            <section class="control-section">
+                <h2>Crop size &amp; position</h2>
+
+                <div class="slider-row">
+                    <span class="slider-label">W</span>
+                    <input id="width_range" type="range" min="1" max="16384" step="1">
+                    <input id="width" class="compact-number" type="number" min="1" max="16384" step="1">
+                </div>
+                <div class="slider-row">
+                    <span class="slider-label">H</span>
+                    <input id="height_range" type="range" min="1" max="16384" step="1">
+                    <input id="height" class="compact-number" type="number" min="1" max="16384" step="1">
+                </div>
+                <div class="slider-row">
+                    <span class="slider-label">X</span>
+                    <input id="x_range" type="range" min="0" max="16384" step="1">
+                    <input id="x" class="compact-number" type="number" min="0" max="16384" step="1">
+                </div>
+                <div class="slider-row">
+                    <span class="slider-label">Y</span>
+                    <input id="y_range" type="range" min="0" max="16384" step="1">
+                    <input id="y" class="compact-number" type="number" min="0" max="16384" step="1">
+                </div>
+
+                <label>Aspect ratio
+                    <select id="aspect_ratio"></select>
+                </label>
+            </section>
+
+            <section class="control-section">
+                <h2>Alignment</h2>
+                <select id="alignment">
+                    <option value="free">Free</option>
+                    <option value="top_left">Top Left</option>
+                    <option value="top">Top</option>
+                    <option value="top_right">Top Right</option>
+                    <option value="left">Left</option>
+                    <option value="center">Center crop</option>
+                    <option value="right">Right</option>
+                    <option value="bottom_left">Bottom Left</option>
+                    <option value="bottom">Bottom</option>
+                    <option value="bottom_right">Bottom Right</option>
+                </select>
+            </section>
+
+            <section class="control-section">
+                <h2>Output scale</h2>
+                <label>Scale multiplier <output id="scaleOutput">1.0×</output>
+                    <input id="scale_multiplier" type="range" min="0.1" max="10" step="0.1">
+                </label>
+                <div class="metrics">
+                    <div><span>Source</span><strong id="sourceSize">—</strong></div>
+                    <div><span>Scaled canvas</span><strong id="scaledCanvas">—</strong></div>
+                    <div><span>Scaled crop</span><strong id="scaledCrop">—</strong></div>
+                    <div><span>Scaled position</span><strong id="scaledPosition">—</strong></div>
+                </div>
+            </section>
+
+            <section class="control-section help-section">
+                <h2>Controls</h2>
+                <p>Drag inside the crop area to move it.</p>
+                <p>Drag one of the four corner handles to resize.</p>
+                <p>Drag outside the crop area to create a new crop.</p>
+            </section>
+
+            <div class="bottom-actions">
+                <button id="applyClose" class="primary wide">Apply &amp; Close</button>
+            </div>
+        </aside>
+    </main>
+
+    <script type="module" src="./interactive_crop_app.js"></script>
+</body>
+</html>

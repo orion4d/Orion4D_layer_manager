@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Orion4D Drop Shadow</title>
+    <link rel="stylesheet" href="./drop_shadow_app.css">
+</head>
+<body>
+    <header class="topbar">
+        <div>
+            <div class="eyebrow">ORION4D LAYER TOOLS</div>
+            <h1>Drop Shadow</h1>
+        </div>
+        <div class="top-actions">
+            <div class="preset-bar">
+                <select id="presetSelect" aria-label="Shadow preset">
+                    <option value="">— Preset —</option>
+                </select>
+                <button id="savePreset" class="secondary">Save</button>
+                <button id="savePresetAs" class="secondary">Save as…</button>
+                <button id="deletePreset" class="danger">Delete</button>
+            </div>
+            <button id="refreshImage" class="secondary">Refresh image</button>
+            <button id="resetSettings" class="secondary">Reset</button>
+            <button id="applySettings" class="primary">Apply</button>
+            <button id="closeApp" class="secondary">Close</button>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <section class="preview-panel">
+            <div class="preview-toolbar">
+                <span id="status">Connecting to ComfyUI…</span>
+                <span id="canvasInfo">1024 × 1024</span>
+            </div>
+            <div class="preview-stage">
+                <canvas id="previewCanvas"></canvas>
+                <div id="emptyMessage">Connect an image to the Drop Shadow node</div>
+            </div>
+            <div class="preview-footer">Preview is rendered locally. ComfyUI performs the final calculation when the workflow runs.</div>
+        </section>
+
+        <aside class="controls-panel">
+            <section class="control-section">
+                <h2>Canvas</h2>
+                <div class="two-columns">
+                    <label>Width<input id="canvas_width" type="number" min="1" max="8192" step="1"></label>
+                    <label>Height<input id="canvas_height" type="number" min="1" max="8192" step="1"></label>
+                </div>
+                <label>Object scale <output data-for="scale_percent"></output>
+                    <input id="scale_percent" type="range" min="-99" max="500" step="0.1">
+                </label>
+            </section>
+
+            <section class="control-section">
+                <h2>Shadow</h2>
+                <label>Mode
+                    <select id="shadow_mode"><option value="outer">Outer</option><option value="inner">Inner</option></select>
+                </label>
+                <label>Spread <output data-for="shadow_spread"></output>
+                    <input id="shadow_spread" type="range" min="0" max="256" step="1">
+                </label>
+                <label>Blur <output data-for="shadow_blur"></output>
+                    <input id="shadow_blur" type="range" min="0" max="256" step="0.5">
+                </label>
+                <div class="two-columns">
+                    <label>Offset X<input id="shadow_offset_x" type="number" min="-4096" max="4096" step="1"></label>
+                    <label>Offset Y<input id="shadow_offset_y" type="number" min="-4096" max="4096" step="1"></label>
+                </div>
+                <label>Opacity <output data-for="shadow_opacity"></output>
+                    <input id="shadow_opacity" type="range" min="0" max="1" step="0.01">
+                </label>
+                <label class="color-row">Shadow color
+                    <input id="shadow_color" type="color">
+                    <input id="shadow_color_text" type="text" maxlength="7" spellcheck="false">
+                </label>
+            </section>
+
+            <section class="control-section">
+                <h2>Background</h2>
+                <label>Mode
+                    <select id="background_mode"><option value="transparent">Transparent</option><option value="color">Color</option></select>
+                </label>
+                <label class="color-row" id="backgroundColorRow">Background color
+                    <input id="background_color" type="color">
+                    <input id="background_color_text" type="text" maxlength="7" spellcheck="false">
+                </label>
+            </section>
+
+            <div class="bottom-actions">
+                <button id="applyClose" class="primary wide">Apply &amp; Close</button>
+            </div>
+        </aside>
+    </main>
+
+    <script type="module" src="./drop_shadow_app.js"></script>
+</body>
+</html>

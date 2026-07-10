@@ -1,0 +1,17 @@
+{
+  "width": 1024,
+  "height": 1024,
+  "fill_mode": "linear",
+  "color_count": "2",
+  "color_1": "#000000",
+  "color_2": "#FFFFFF",
+  "color_3": "#FFFFFF",
+  "color_4": "#FFFFFF",
+  "invert": false,
+  "angle": 90.0,
+  "center_x": 0.5,
+  "center_y": 0.5,
+  "inner_border_px": 0,
+  "border_color": "#FFFFFF",
+  "border_opacity": 1.0
+}
