@@ -97,7 +97,7 @@ Example:
 
 ---
 
-## 🎨 Fill / Gradient Generator v2
+## 🎨 Fill / Gradient Generator
 
 Generate solid colors and configurable gradients without requiring an input image.
 
@@ -462,8 +462,15 @@ custom_nodes/Orion4D_Layer_Tools/
 
 ---
 
-# Author
+<div align="center">
 
-Created by **Orion4D**.
+<h3>🌟 <strong>Show Your Support</strong></h3>
+<p>If this project helped you, please consider giving it a ⭐ on GitHub!</p>
+<p><strong>Made with ❤️ for the ComfyUI community</strong></p>
+<p><strong>by Orion4D</strong></p>
+<a href="https://ko-fi.com/orion4d">
+<img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Buy Me A Coffee" height="41" width="174">
+</a>
 
-Designed for practical local image workflows in ComfyUI.
+</div>
+
