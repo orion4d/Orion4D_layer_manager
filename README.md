@@ -1,6 +1,10 @@
 # Orion4D Layer Manager
 A custom layer editor for ComfyUI with three utilities (drop shadow editor, crop editor, and gradient editor).
 
+<img width="1490" height="1126" alt="image" src="https://github.com/user-attachments/assets/c1d5a283-4835-43ee-9885-65907cbee6f3" />
+<img width="1655" height="1124" alt="image" src="https://github.com/user-attachments/assets/4ac25ad7-cc29-422e-bee7-3d9b84d63096" />
+<img width="1684" height="969" alt="image" src="https://github.com/user-attachments/assets/696d30d8-c28d-4513-a013-f0c85744681c" />
+
 ---
 
 ## Included nodes
