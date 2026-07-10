@@ -1,6 +1,6 @@
 [project]
 name = "orion4d_layer_manager"
-description = "A custom layer editor for ComfyUI with three utilities (drop shadow editor, crop editor, and gradient editor)."
+description = "A custom layer editor for ComfyUI with three utilities  (drop shadow editor, crop editor, and gradient editor)."
 version = "1.0.0"
 license = "MIT" 
 # classifiers = [
