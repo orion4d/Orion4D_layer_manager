@@ -1,6 +1,10 @@
 # Orion4D Layer Manager
 A custom layer editor for ComfyUI with three utilities (drop shadow editor, crop editor, and gradient editor).
 
+<img width="1490" height="1126" alt="image" src="https://github.com/user-attachments/assets/c1d5a283-4835-43ee-9885-65907cbee6f3" />
+<img width="1655" height="1124" alt="image" src="https://github.com/user-attachments/assets/4ac25ad7-cc29-422e-bee7-3d9b84d63096" />
+<img width="1684" height="969" alt="image" src="https://github.com/user-attachments/assets/696d30d8-c28d-4513-a013-f0c85744681c" />
+
 ---
 
 ## Included nodes
@@ -93,7 +97,7 @@ Example:
 
 ---
 
-## 🎨 Fill / Gradient Generator v2
+## 🎨 Fill / Gradient Generator
 
 Generate solid colors and configurable gradients without requiring an input image.
 
@@ -292,47 +296,6 @@ Locked layers remain visible but are ignored during canvas hit-testing. Clicking
 
 ---
 
-# Installation
-
-## Manual installation
-
-1. Download or clone the repository.
-2. Copy the folder into:
-
-```text
-ComfyUI/custom_nodes/Orion4D_Layer_Tools/
-```
-
-3. The resulting structure should be:
-
-```text
-ComfyUI/
-└── custom_nodes/
-    └── Orion4D_Layer_Tools/
-        ├── __init__.py
-        ├── drop_shadow_node.py
-        ├── gradient_fill_node.py
-        ├── interactive_crop_node.py
-        ├── layer_manager_node.py
-        ├── presets_gradients/
-        ├── presets_shadows/
-        └── web/
-```
-
-4. Restart ComfyUI completely.
-5. Reload the browser interface with:
-
-```text
-Ctrl + F5
-```
-
-## Important when updating
-
-Remove or disable older standalone copies of these nodes before installing the combined package.
-
-Duplicate Python node classes or duplicated HTTP routes can prevent ComfyUI from loading the extension correctly.
-
----
 
 # Requirements
 
@@ -376,7 +339,7 @@ If the app window does not open, allow pop-ups for the local ComfyUI address.
 # Project structure
 
 ```text
-Orion4D_Layer_Tools/
+Orion4D_layer_manager/
 ├── __init__.py
 ├── drop_shadow_node.py
 ├── gradient_fill_node.py
@@ -413,53 +376,15 @@ Orion4D_Layer_Tools/
     └── layer_manager_app.css
 ```
 
----
+<div align="center">
 
-# Troubleshooting
+<h3>🌟 <strong>Show Your Support</strong></h3>
+<p>If this project helped you, please consider giving it a ⭐ on GitHub!</p>
+<p><strong>Made with ❤️ for the ComfyUI community</strong></p>
+<p><strong>by Orion4D</strong></p>
+<a href="https://ko-fi.com/orion4d">
+<img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Buy Me A Coffee" height="41" width="174">
+</a>
 
-## The node is missing
+</div>
 
-- Check the ComfyUI terminal for Python import errors.
-- Verify that the extension folder contains `__init__.py`.
-- Make sure the folder is not nested twice after extraction.
-
-Incorrect:
-
-```text
-custom_nodes/Orion4D_Layer_Tools/Orion4D_Layer_Tools/
-```
-
-Correct:
-
-```text
-custom_nodes/Orion4D_Layer_Tools/
-```
-
-## The Open App button is missing
-
-- Restart ComfyUI.
-- Perform a hard browser refresh with `Ctrl + F5`.
-- Clear the ComfyUI frontend cache if an older JavaScript version is still loaded.
-
-## The connected image does not appear
-
-- Run the upstream node once so that it produces a preview.
-- Confirm that the image input is connected.
-- Click the app refresh control when available.
-- Close old app windows before opening a new one.
-
-## Presets are not listed
-
-- Confirm that the JSON files are located directly inside:
-  - `presets_shadows/`
-  - `presets_gradients/`
-- Verify that the files contain valid JSON.
-- Restart ComfyUI after manually adding preset files.
-
----
-
-# Author
-
-Created by **Orion4D**.
-
-Designed for practical local image workflows in ComfyUI.
