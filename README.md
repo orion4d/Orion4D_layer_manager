@@ -417,51 +417,6 @@ Orion4D_Layer_Tools/
     └── layer_manager_app.css
 ```
 
----
-
-# Troubleshooting
-
-## The node is missing
-
-- Check the ComfyUI terminal for Python import errors.
-- Verify that the extension folder contains `__init__.py`.
-- Make sure the folder is not nested twice after extraction.
-
-Incorrect:
-
-```text
-custom_nodes/Orion4D_Layer_Tools/Orion4D_Layer_Tools/
-```
-
-Correct:
-
-```text
-custom_nodes/Orion4D_Layer_Tools/
-```
-
-## The Open App button is missing
-
-- Restart ComfyUI.
-- Perform a hard browser refresh with `Ctrl + F5`.
-- Clear the ComfyUI frontend cache if an older JavaScript version is still loaded.
-
-## The connected image does not appear
-
-- Run the upstream node once so that it produces a preview.
-- Confirm that the image input is connected.
-- Click the app refresh control when available.
-- Close old app windows before opening a new one.
-
-## Presets are not listed
-
-- Confirm that the JSON files are located directly inside:
-  - `presets_shadows/`
-  - `presets_gradients/`
-- Verify that the files contain valid JSON.
-- Restart ComfyUI after manually adding preset files.
-
----
-
 <div align="center">
 
 <h3>🌟 <strong>Show Your Support</strong></h3>
