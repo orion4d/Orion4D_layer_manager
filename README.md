@@ -296,47 +296,6 @@ Locked layers remain visible but are ignored during canvas hit-testing. Clicking
 
 ---
 
-# Installation
-
-## Manual installation
-
-1. Download or clone the repository.
-2. Copy the folder into:
-
-```text
-ComfyUI/custom_nodes/Orion4D_Layer_Tools/
-```
-
-3. The resulting structure should be:
-
-```text
-ComfyUI/
-└── custom_nodes/
-    └── Orion4D_Layer_Tools/
-        ├── __init__.py
-        ├── drop_shadow_node.py
-        ├── gradient_fill_node.py
-        ├── interactive_crop_node.py
-        ├── layer_manager_node.py
-        ├── presets_gradients/
-        ├── presets_shadows/
-        └── web/
-```
-
-4. Restart ComfyUI completely.
-5. Reload the browser interface with:
-
-```text
-Ctrl + F5
-```
-
-## Important when updating
-
-Remove or disable older standalone copies of these nodes before installing the combined package.
-
-Duplicate Python node classes or duplicated HTTP routes can prevent ComfyUI from loading the extension correctly.
-
----
 
 # Requirements
 
@@ -380,7 +339,7 @@ If the app window does not open, allow pop-ups for the local ComfyUI address.
 # Project structure
 
 ```text
-Orion4D_Layer_Tools/
+Orion4D_layer_manager/
 ├── __init__.py
 ├── drop_shadow_node.py
 ├── gradient_fill_node.py
