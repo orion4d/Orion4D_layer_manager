@@ -22,7 +22,13 @@ All nodes are available in the ComfyUI category:
 ```text
 Orion4D_Layer
 ```
+> 💡 **Tip:** Install [Orion4D_AutoCachedPreview](https://github.com/orion4d/Orion4D_AutoCachedPreview) to retrieve images from an ongoing workflow without restarting the entire generation process.
 
+### Very useful for your creations:
+* [Orion4D_maskpro](https://github.com/orion4d/Orion4D_maskpro)
+* [Orion4D_TextMakerPro](https://github.com/orion4d/Orion4D_TextMakerPro)
+* [Orion4D_generative_paint](https://github.com/orion4d/Orion4D_generative_paint)
+* [Orion4D_FXMax](https://github.com/orion4d/Orion4D_FXMax)
 ---
 
 ## Main concept
